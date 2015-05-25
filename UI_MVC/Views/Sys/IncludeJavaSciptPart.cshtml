@@ -1,0 +1,49 @@
+﻿@using UI_MVC.Common
+@{
+    var version = DateTime.Now.Ticks.ToString();
+    if (Config.IsPublish == true)
+    {
+        version = Config.Version;
+    }
+}
+
+<!-- BEGIN CORE PLUGINS -->
+
+<script src="@(Config.ResourcePath)js/jquery-1.10.1.min.js?Version=@(version)" type="text/javascript"></script>
+
+<script src="@(Config.ResourcePath)js/jquery-migrate-1.2.1.min.js?Version=@(version)" type="text/javascript"></script>
+
+<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+<script src="@(Config.ResourcePath)js/jquery-ui-1.10.1.custom.min.js?Version=@(version)" type="text/javascript"></script>
+
+<script src="@(Config.ResourcePath)js/bootstrap.min.js?Version=@(version)" type="text/javascript"></script>
+
+<!--[if lt IE 9]>
+
+<script src="@(Config.ResourcePath)js/excanvas.min.js?Version=@(version)"></script>
+
+<script src="@(Config.ResourcePath)js/respond.min.js?Version=@(version)"></script>
+
+<![endif]-->
+
+<script src="@(Config.ResourcePath)js/jquery.slimscroll.min.js?Version=@(version)" type="text/javascript"></script>
+
+<script src="@(Config.ResourcePath)js/jquery.blockui.min.js?Version=@(version)" type="text/javascript"></script>
+
+<script src="@(Config.ResourcePath)js/jquery.cookie.min.js?Version=@(version)" type="text/javascript"></script>
+
+<script src="@(Config.ResourcePath)js/jquery.uniform.min.js?Version=@(version)" type="text/javascript"></script>
+
+<!-- END CORE PLUGINS -->
+
+<script src="@(Config.ResourcePath)js/app.js?Version=@(version)"></script>
+<script>
+
+    jQuery(document).ready(function () {
+
+        App.init();
+
+    });
+
+</script>

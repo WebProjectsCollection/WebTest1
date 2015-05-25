@@ -1,0 +1,38 @@
+﻿@using UI_MVC.Common
+@{
+    var version = DateTime.Now.Ticks.ToString();
+    if (Config.IsPublish == true)
+    {
+        version = Config.Version;
+    }
+}
+
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+<link href="@(Config.ResourcePath)css/bootstrap.min.css?Version=@(version)" rel="stylesheet" type="text/css" />
+
+<link href="@(Config.ResourcePath)css/bootstrap-responsive.min.css?Version=@(version)" rel="stylesheet" type="text/css" />
+
+<link href="@(Config.ResourcePath)css/font-awesome.min.css?Version=@(version)" rel="stylesheet" type="text/css" />
+
+<link href="@(Config.ResourcePath)css/style-metro.css?Version=@(version)" rel="stylesheet" type="text/css" />
+
+<link href="@(Config.ResourcePath)css/style.css?Version=@(version)" rel="stylesheet" type="text/css" />
+
+<link href="@(Config.ResourcePath)css/style-responsive.css?Version=@(version)" rel="stylesheet" type="text/css" />
+
+<link href="@(Config.ResourcePath)css/default.css?Version=@(version)" rel="stylesheet" type="text/css" id="style_color" />
+
+<link href="@(Config.ResourcePath)css/uniform.default.css?Version=@(version)" rel="stylesheet" type="text/css" />
+
+<!-- END GLOBAL MANDATORY STYLES -->
+
+
+<!-- BEGIN PAGE LEVEL STYLES -->
+
+<link href="@(Config.ResourcePath)css/error.css?Version=@(version)" rel="stylesheet" type="text/css" />
+<link href="@(Config.ResourcePath)css/bootstrap-fileupload.css?Version=@(version)" rel="stylesheet" type="text/css" />
+<link href="@(Config.ResourcePath)css/chosen.css?Version=@(version)" rel="stylesheet" type="text/css" />
+<link href="@(Config.ResourcePath)css/profile.css?Version=@(version)" rel="stylesheet" type="text/css" />
+
+<!-- END PAGE LEVEL STYLES -->
