@@ -13,10 +13,19 @@ namespace UI_MVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("NotFound", "NotFound.html", new { controller = "Sys", action = "NotFound" });
+            routes.MapRoute("Login", "Login.html", new { Controller = "Login", Action = "Index" });
+            routes.MapRoute("AutoLogin", "AutoLogin.html", new { Controller = "Login", Action = "AutoLogin" });
+
+            routes.MapRoute("do", "{Controller}/{Action}.do");
+            routes.MapRoute("html", "{Controller}/{Action}.html");
+            //routes.MapRoute("api", "{Controller}/{Action}.api");
+
+            //routes.MapRoute("Default", "Login.html",new { Controller = "Sys", Action = "NotFound" });
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{Controller}/{Action}",
+                defaults: new { controller = "Home", action = "Page" }
             );
         }
     }
