@@ -7,9 +7,18 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Page</title>
+    <meta charset="utf-8" />
+    <title>首页</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
     @Html.Partial("~/Views/Sys/IncludeStylesPart.cshtml")
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="@(Config.ResourcePath)css/error.css?Version=@(Config.Version)" rel="stylesheet" type="text/css" />
+    <link href="@(Config.ResourcePath)css/chosen.css?Version=@(Config.Version)" rel="stylesheet" type="text/css" />
+    <link href="@(Config.ResourcePath)css/profile.css?Version=@(Config.Version)" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
 </head>
 
 
@@ -29,7 +38,7 @@
 
                 <a class="brand" href="index.html">
 
-                    <img src="@(Config.ResourcePath)image/logo.png" alt="logo" />  <!-- 需替换 -->
+                    <img src="@(Config.ResourcePath)image/logo.png?Version=@(Config.Version)" alt="logo" />  <!-- 需替换 -->
 
                 </a>
 
@@ -38,7 +47,7 @@
 
                 <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
 
-                    <img src="@(Config.ResourcePath)image/menu-toggler.png" alt="" /> <!-- 这个可以保留 -->
+                    <img src="@(Config.ResourcePath)image/menu-toggler.png?Version=@(Config.Version)" alt="" /> <!-- 这个可以保留 -->
 
                 </a>
 
@@ -63,11 +72,11 @@
 
                         <ul class="dropdown-menu">
 
-                            <li><a href="extra_profile.html"><i class="icon-user"></i> 用户信息</a></li>
+                            <li><a href="~/User/Profile.html"><i class="icon-user"></i> 用户信息</a></li>
 
-                            <li><a href="extra_lock.html"><i class="icon-lock"></i> 锁定屏幕</a></li>
+                            <li><a href="~/Extra/Lock.html"><i class="icon-lock"></i> 锁定屏幕</a></li>
 
-                            <li><a href="login.html"><i class="icon-key"></i> 退出登录</a></li>
+                            <li><a href="~/User/Logout.html"><i class="icon-key"></i> 退出登录</a></li>
 
                         </ul>
 
@@ -99,6 +108,49 @@
             <!-- BEGIN PAGE CONTAINER-->
             <div class="container-fluid">
                 <!-- BEGIN PAGE HEADER-->
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                        <h3 class="page-title">
+
+                            User Profile <small>user profile sample</small>
+
+                        </h3>
+
+                        <ul class="breadcrumb">
+
+                            <li>
+
+                                <i class="icon-home"></i>
+
+                                <a href="index.html">Home</a>
+
+                                <i class="icon-angle-right"></i>
+
+                            </li>
+
+                            <li>
+
+                                <a href="#">Extra</a>
+
+                                <i class="icon-angle-right"></i>
+
+                            </li>
+
+                            <li><a href="#">User Profile</a></li>
+
+                        </ul>
+
+                        <!-- END PAGE TITLE & BREADCRUMB-->
+
+                    </div>
+
+                </div>
+
                 <!-- END PAGE HEADER-->
                 <!-- BEGIN PAGE CONTENT-->
                 <div class="row-fluid profile">
@@ -2385,11 +2437,19 @@
     </div>
 
     <!-- END FOOTER -->
+
     <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
     @Html.Partial("~/Views/Sys/IncludeJavaSciptPart.cshtml")
+    <script src="@(Config.ResourcePath)js/app.js?Version=@(Config.Version)"></script>
+    <script>
+
+        jQuery(document).ready(function () {
+            App.init();
+        });
+
+    </script>
+
     <!-- END JAVASCRIPTS -->
-    <script type="text/javascript">  var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-37564768-1']); _gaq.push(['_setDomainName', 'keenthemes.com']); _gaq.push(['_setAllowLinker', true]); _gaq.push(['_trackPageview']); (function () { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>
+    @*<script type="text/javascript">  var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-37564768-1']); _gaq.push(['_setDomainName', 'keenthemes.com']); _gaq.push(['_setAllowLinker', true]); _gaq.push(['_trackPageview']); (function () { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>*@
 </body>
-
-
 </html>

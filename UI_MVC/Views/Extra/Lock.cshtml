@@ -1,0 +1,65 @@
+﻿@using UI_MVC.Common
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>锁屏</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    @Html.Partial("~/Views/Sys/IncludeStylesPart.cshtml")
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="@(Config.ResourcePath)css/lock.css?Version=@(Config.Version)" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
+</head>
+<body>
+    <div class="page-lock">
+        <div class="page-logo">
+            <a class="brand" href="~/Home/page.html">
+                <img src="@(Config.ResourcePath)image/logo-big.png" alt="logo" />
+            </a>
+        </div>
+        <div class="page-body">
+            <img class="page-lock-img" src="@(Config.ResourcePath)image/profile.jpg" alt="">
+            <div class="page-lock-info">
+                <h1>Bob Nilson</h1>
+                <span>bob@keenthemes.com</span>
+                <span><em>Locked</em></span>
+                <form class="form-search" action="~/Extra/Unlock.html">
+                    <div class="input-append">
+                        <input type="text" class="m-wrap" placeholder="Password">
+                        <button type="submit" class="btn blue icn-only"><i class="m-icon-swapright m-icon-white"></i></button>
+                    </div>
+                    <div class="relogin">
+                        <a href="~/User/Login.html">Not Bob Nilson ?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="page-footer">
+            2013 &copy; Metronic. Admin Dashboard Template.
+        </div>
+    </div>
+
+    <!-- BEGIN JAVASCRIPTS -->
+    @Html.Partial("~/Views/Sys/IncludeJavaSciptPart.cshtml")
+    <script src="@(Config.ResourcePath)js/jquery.backstretch.min.js?Version=@(Config.Version)" type="text/javascript"></script>
+    <script src="@(Config.ResourcePath)js/app.js?Version=@(Config.Version)"></script>
+    <script src="@(Config.ResourcePath)js/lock.js?Version=@(Config.Version)"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            App.init();
+            Lock.init();
+        });
+    </script>
+
+    <!-- END JAVASCRIPTS -->
+</body>
+</html>
