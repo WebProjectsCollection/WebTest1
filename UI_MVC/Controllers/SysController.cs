@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using UI_MVC.Common;
+using UI_MVC.Filters;
 
 namespace UI_MVC.Controllers
 {
@@ -11,7 +12,7 @@ namespace UI_MVC.Controllers
     {
         //
         // GET: /NotFound/
-
+      
         public ActionResult NotFound()
         {
             return View();

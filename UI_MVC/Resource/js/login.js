@@ -100,7 +100,8 @@
 
                 messages: {
                     email: {
-                        required: "邮箱必填."
+                        required: "邮箱必填.",
+                        email:"请输入有效邮箱"
                     }
                 },
 
@@ -173,6 +174,22 @@
                 messages: { // custom messages for radio buttons and checkboxes
                     tnc: {
                         required: "Please accept TNC first."
+                    },
+                    username: {
+                        required: "用户名必填"
+                    },
+                    password: {
+                        required: "密码必填"
+                    },
+                    rpassword: {
+                        equalTo: "两次密码不一致"
+                    },
+                    email: {
+                        required: "邮箱必填",
+                        email: "请输入有效邮箱"
+                    },
+                    tnc: {
+                        required: "请阅读并同意相关条款"
                     }
                 },
 
