@@ -116,6 +116,7 @@
     <Compile Include="Controllers\ExtraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SysController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -438,6 +439,7 @@
     <Content Include="Resource\js\jquery.flot.pie.js" />
     <Content Include="Resource\js\jquery.flot.resize.js" />
     <Content Include="Resource\js\jquery.flot.stack.js" />
+    <Content Include="Resource\js\jquery.form.js" />
     <Content Include="Resource\js\jquery.gritter.js" />
     <Content Include="Resource\js\jquery.iframe-transport.js" />
     <Content Include="Resource\js\jquery.input-ip-address-control-1.0.min.js" />
@@ -533,6 +535,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Extra\Lock.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

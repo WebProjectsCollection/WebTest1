@@ -13,6 +13,8 @@ namespace UI_MVC.Controllers
 
         public ActionResult Lock()
         {
+            ViewBag.UserName="yangxun";
+            ViewBag.UserEmail = "yangxun@outlook.com";
             return View();
         }
 
