@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using UI_MVC.Filters;
 
 namespace UI_MVC
 {
@@ -7,7 +8,7 @@ namespace UI_MVC
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //filters.Add(new HandleErrorAttribute());
+            //filters.Add(new AuthorizationAttribute());
         }
     }
 }

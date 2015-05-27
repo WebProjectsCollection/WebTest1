@@ -136,9 +136,19 @@ namespace UI_MVC.Filters
                 }
                 else
                 {
-                    _AuthSaveType = value.Trim();
+                    _AuthSaveType = value.Trim().ToUpper();
                 }
             }
+        }
+
+        /// <summary>
+        /// 页面是否已经锁定
+        /// </summary>
+        private string _IsLocked = "";
+        public string IsLocked
+        {
+            get { return _IsLocked; }
+            set { _IsLocked = value.Trim().ToLower(); }
         }
 
         #endregion
@@ -169,9 +179,14 @@ namespace UI_MVC.Filters
                     case "COOKIE":
                         if (!filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true) && !filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true))
                         {
-                            if (filterContext.HttpContext.Request.Cookies[AuthSaveKey] == null)
+                            HttpCookie cookie = filterContext.HttpContext.Request.Cookies[AuthSaveKey];
+                            if (cookie == null)
                             {
                                 filterContext.Result = new RedirectResult(LoginUrl);
+                            }
+                            else if (IsLocked != "islocked" && cookie.Values["islocked"] == "islocked")
+                            {
+                                filterContext.Result = new RedirectResult("/Extra/Lock.html");
                             }
                         }
                         break;

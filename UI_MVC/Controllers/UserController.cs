@@ -51,6 +51,7 @@ namespace UI_MVC.Controllers
             }
         }
 
+        [AllowAnonymous]
         public ActionResult Logout()
         {
             // 清除登录用户的Cookies
