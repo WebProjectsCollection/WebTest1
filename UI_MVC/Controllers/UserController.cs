@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UI_MVC.Common;
 using UI_MVC.Filters;
 
 namespace UI_MVC.Controllers
@@ -10,28 +11,36 @@ namespace UI_MVC.Controllers
     [Authorization]
     public class UserController : Controller
     {
-        //
-        // GET: /User/
+        /// <summary>
+        /// 如果用户未登录，返回登录页面；否则跳往首页
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        [AllowAnonymous]//这里是一个特例，有这个特性，表示这个方法不需要验证用户登录状态
+        [AllowAnonymous]//匿名访问（这里是一个特例，表示这个方法不需要验证用户登录状态）
         public ActionResult Login()
         {
-            if (Request.Cookies["LoginedUser"] != null)
+            // 验证Cookies，判断用户是否已经登录
+            if (Request.Cookies[Config.AuthSaveKey] != null)
             {
-                Response.Redirect("/Home/Page.html");
+                // 跳转到首页
+                Response.Redirect("/");
                 return null;
             }
             return View();
         }
 
+        /// <summary>
+        /// 登录验证
+        /// </summary>
         [HttpPost]
-        [AllowAnonymous]//这里是一个特例，有这个特性，表示这个方法不需要验证用户登录状态
+        [AllowAnonymous]
         public ActionResult Login(string userName, string password)
         {
-            // username=yx&password=123
+            // 登录验证username=yx&password=123
             if (userName == "yx" && password == "123")
             {
-                HttpCookie _cookie = new HttpCookie("LoginedUser");
+                // 写Cookies
+                HttpCookie _cookie = new HttpCookie(Config.AuthSaveKey);
                 _cookie.Values.Add("name", "yangxun");
                 Response.Cookies.Add(_cookie);
                 return Json(new { Message = "OK" });
@@ -44,9 +53,10 @@ namespace UI_MVC.Controllers
 
         public ActionResult Logout()
         {
-            if (Request.Cookies["LoginedUser"] != null)
+            // 清除登录用户的Cookies
+            if (Request.Cookies[Config.AuthSaveKey] != null)
             {
-                HttpCookie _cookie = Request.Cookies["LoginedUser"];
+                HttpCookie _cookie = Request.Cookies[Config.AuthSaveKey];
                 _cookie.Expires = DateTime.Now.AddHours(-1);
                 Response.Cookies.Add(_cookie);
             }

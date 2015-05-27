@@ -15,7 +15,7 @@ namespace UI_MVC
 
             routes.MapRoute("NotFound", "NotFound.html", new { controller = "Sys", action = "NotFound" });
             routes.MapRoute("Login", "Login.html", new { Controller = "Login", Action = "Index" });
-            routes.MapRoute("AutoLogin", "AutoLogin.html", new { Controller = "Login", Action = "AutoLogin" });
+            routes.MapRoute("AutoLogin", "AutoLogin.html", new { Controller = "Login", Action = "Login" });
 
             routes.MapRoute("do", "{Controller}/{Action}.do");
             routes.MapRoute("html", "{Controller}/{Action}.html");

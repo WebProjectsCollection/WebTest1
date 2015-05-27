@@ -41,5 +41,38 @@ namespace UI_MVC.Common
                 return XConfig.GetValue<string>("ResourcePath");
             }
         }
+
+        /// <summary>
+        /// 登录地址
+        /// </summary>
+        public static string LoginUrl
+        {
+            get
+            {
+                return XConfig.GetValue<string>("LoginUrl");
+            }
+        }
+
+        /// <summary>
+        /// 表示Cookies/Session用来保存登陆信息的键名
+        /// </summary>
+        public static string AuthSaveKey
+        {
+            get
+            {
+                return XConfig.GetValue<string>("AuthSaveKey");
+            }
+        }
+
+        /// <summary>
+        /// 用来保存登录信息的方式
+        /// </summary>
+        public static string AuthSaveType
+        {
+            get
+            {
+                return XConfig.GetValue<string>("AuthSaveType");
+            }
+        }
     }
 }

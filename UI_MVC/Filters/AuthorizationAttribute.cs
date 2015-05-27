@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UI_MVC.Common;
 
 namespace UI_MVC.Filters
 {
@@ -13,36 +14,27 @@ namespace UI_MVC.Filters
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
     public class AuthorizationAttribute : FilterAttribute, IAuthorizationFilter
     {
+        #region 构造函数
 
         /// <summary>
         /// 默认构造函数
         /// </summary>
         public AuthorizationAttribute()
         {
-            String authUrl = System.Configuration.ConfigurationManager.AppSettings["AuthUrl"];
-            String saveKey = System.Configuration.ConfigurationManager.AppSettings["AuthSaveKey"];
-            String saveType = System.Configuration.ConfigurationManager.AppSettings["AuthSaveType"];
-            if (String.IsNullOrEmpty(authUrl))
+            // 读取配置文件设置参数
+            string authUrl = Config.LoginUrl;
+            string saveKey = Config.AuthSaveKey;
+            string saveType = Config.AuthSaveType;
+
+            if (false == string.IsNullOrEmpty(authUrl))
             {
-                this._AuthUrl = "/waste/user/login";
+                this._LoginUrl = authUrl;
             }
-            else
-            {
-                this._AuthUrl = authUrl;
-            }
-            if (String.IsNullOrEmpty(saveKey))
-            {
-                this._AuthSaveKey = "LoginedUser";
-            }
-            else
+            if (false == string.IsNullOrEmpty(saveKey))
             {
                 this._AuthSaveKey = saveKey;
             }
-            if (String.IsNullOrEmpty(saveType))
-            {
-                this._AuthSaveType = "Session";
-            }
-            else
+            if (false == string.IsNullOrEmpty(saveType))
             {
                 this._AuthSaveType = saveType;
             }
@@ -52,65 +44,72 @@ namespace UI_MVC.Filters
         /// <summary>
         /// 构造函数重载
         /// </summary>
-        /// <param name="authUrl">表示没有登录跳转的登录地址</param>
-        public AuthorizationAttribute(String authUrl)
+        /// <param name="loginUrl">表示没有登录跳转的登录地址</param>
+        public AuthorizationAttribute(string loginUrl)
             : this()
         {
-            this._AuthUrl = authUrl;
+            this._LoginUrl = loginUrl;
         }
+
         /// <summary>
         /// 构造函数重载
         /// </summary>
         /// <param name="authUrl">表示没有登录跳转的登录地址</param>
         /// <param name="saveKey">表示登录用来保存登陆信息的键名</param>
-        public AuthorizationAttribute(String authUrl, String saveKey)
+        public AuthorizationAttribute(string authUrl, string saveKey)
             : this(authUrl)
         {
             this.AuthSaveKey = saveKey;
-            this.AuthSaveType = "Session";
         }
+
         /// <summary>
         /// 构造函数重载
         /// </summary>
         /// <param name="authUrl">表示没有登录跳转的登录地址</param>
         /// <param name="saveKey">表示登录用来保存登陆信息的键名</param>
         /// <param name="saveType">表示登录用来保存登陆信息的方式</param>
-        public AuthorizationAttribute(String authUrl, String saveKey, String saveType)
+        public AuthorizationAttribute(string authUrl, string saveKey, string saveType)
             : this(authUrl, saveKey)
         {
             this._AuthSaveType = saveType;
         }
+
+        #endregion
+
+        #region 属性
+
         /// <summary>
         /// 获取或者设置一个值，该值表示登录地址
-        /// 如果web.config中末定义AuthUrl的值，则默认为：/waste/user/login
+        /// 如果web.config中末定义AuthUrl的值，则默认为：/user/login.html
         /// </summary>
-        private String _AuthUrl = String.Empty;
-        public String AuthUrl
+        private string _LoginUrl = "/user/login.html";
+        public string LoginUrl
         {
-            get { return _AuthUrl.Trim(); }
+            get { return _LoginUrl.Trim(); }
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentNullException("用于验证用户登录信息的登录地址不能为空！");
                 }
                 else
                 {
-                    _AuthUrl = value.Trim();
+                    _LoginUrl = value.Trim();
                 }
             }
         }
+
         /// <summary>
-        /// 获取或者设置一个值，该值表示登录用来保存登陆信息的键名
+        /// 获取或者设置一个值，该值表示Cookies/Session用来保存登陆信息的键名
         /// 如果web.config中末定义AuthSaveKey的值，则默认为LoginedUser
         /// </summary>
-        private String _AuthSaveKey = String.Empty;
-        public String AuthSaveKey
+        private string _AuthSaveKey = "LoginedUser";
+        public string AuthSaveKey
         {
             get { return _AuthSaveKey.Trim(); }
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentNullException("用于保存登陆信息的键名不能为空！");
                 }
@@ -120,17 +119,18 @@ namespace UI_MVC.Filters
                 }
             }
         }
+
         /// <summary>
         /// 获取或者设置一个值，该值用来保存登录信息的方式
-        /// 如果web.config中末定义AuthSaveType的值，则默认为Session保存
+        /// 如果web.config中末定义AuthSaveType的值，则默认为Cookie保存
         /// </summary>
-        private String _AuthSaveType = String.Empty;
-        public String AuthSaveType
+        private string _AuthSaveType = "Cookie";
+        public string AuthSaveType
         {
             get { return _AuthSaveType.Trim().ToUpper(); }
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentNullException("用于保存登陆信息的方式不能为空，只能为【Cookie】或者【Session】！");
                 }
@@ -140,6 +140,8 @@ namespace UI_MVC.Filters
                 }
             }
         }
+
+        #endregion
 
         public void OnAuthorization(AuthorizationContext filterContext)
         {
@@ -158,18 +160,18 @@ namespace UI_MVC.Filters
                         }
                         else if (!filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true) && !filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true))
                         {
-                            if (filterContext.HttpContext.Session[_AuthSaveKey] == null)
+                            if (filterContext.HttpContext.Session[AuthSaveKey] == null)
                             {
-                                filterContext.Result = new RedirectResult(_AuthUrl);
+                                filterContext.Result = new RedirectResult(LoginUrl);
                             }
                         }
                         break;
                     case "COOKIE":
                         if (!filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true) && !filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true))
                         {
-                            if (filterContext.HttpContext.Request.Cookies[_AuthSaveKey] == null)
+                            if (filterContext.HttpContext.Request.Cookies[AuthSaveKey] == null)
                             {
-                                filterContext.Result = new RedirectResult(_AuthUrl);
+                                filterContext.Result = new RedirectResult(LoginUrl);
                             }
                         }
                         break;
