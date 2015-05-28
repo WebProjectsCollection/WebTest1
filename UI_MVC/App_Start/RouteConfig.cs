@@ -10,8 +10,11 @@ namespace UI_MVC
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
+
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            // Chrome 中浏览网页时会自动请求 favicon.ico，设置此项将其忽略
+            routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 
             routes.MapRoute("NotFound", "NotFound.html", new { controller = "Sys", action = "NotFound" });
             routes.MapRoute("Login", "Login.html", new { Controller = "Login", Action = "Index" });

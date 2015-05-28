@@ -8,7 +8,6 @@ using UI_MVC.Filters;
 
 namespace UI_MVC.Controllers
 {
-    [Authorization]
     public class UserController : Controller
     {
         /// <summary>

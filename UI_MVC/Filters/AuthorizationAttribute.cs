@@ -141,16 +141,6 @@ namespace UI_MVC.Filters
             }
         }
 
-        /// <summary>
-        /// 页面是否已经锁定
-        /// </summary>
-        private string _IsLocked = "";
-        public string IsLocked
-        {
-            get { return _IsLocked; }
-            set { _IsLocked = value.Trim().ToLower(); }
-        }
-
         #endregion
 
         public void OnAuthorization(AuthorizationContext filterContext)
@@ -168,7 +158,8 @@ namespace UI_MVC.Filters
                         {
                             throw new Exception("服务器Session不可用！");
                         }
-                        else if (!filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true) && !filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true))
+                        else if (!filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true)
+                                && !filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true))
                         {
                             if (filterContext.HttpContext.Session[AuthSaveKey] == null)
                             {
@@ -177,14 +168,15 @@ namespace UI_MVC.Filters
                         }
                         break;
                     case "COOKIE":
-                        if (!filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true) && !filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true))
+                        if (!filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true)
+                            && !filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true))
                         {
                             HttpCookie cookie = filterContext.HttpContext.Request.Cookies[AuthSaveKey];
                             if (cookie == null)
                             {
                                 filterContext.Result = new RedirectResult(LoginUrl);
                             }
-                            else if (IsLocked != "islocked" && cookie.Values["islocked"] == "islocked")
+                            else if (cookie.Values["islocked"] == "islocked")
                             {
                                 filterContext.Result = new RedirectResult("/Extra/Lock.html");
                             }

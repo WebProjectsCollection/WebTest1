@@ -7,12 +7,11 @@ using UI_MVC.Filters;
 
 namespace UI_MVC.Controllers
 {
-    [Authorization]
     public class HomeController : Controller
     {
         //
         // GET: /Home/
-        public ActionResult Page()
+        public ActionResult Page(string username="yangxun",string pwd="123")
         {
             return View();
         }

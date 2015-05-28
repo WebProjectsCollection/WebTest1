@@ -486,7 +486,7 @@
     <Content Include="Resource\js\ui-sliders.js" />
     <Content Include="Resource\js\ui-tree.js" />
     <Content Include="Resource\js\wysihtml5-0.3.0.js" />
-    <Content Include="Views\NotFound.html" />
+    <Content Include="Views\NotFound1.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

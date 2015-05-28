@@ -74,7 +74,7 @@
 
                             <li><a href="~/User/Profile.html"><i class="icon-user"></i> 用户信息</a></li>
 
-                            <li><a href="~/Extra/Lock.html"><i class="icon-lock"></i> 锁定屏幕</a></li>
+                            <li><a href="~/Extra/Lock.html?backUrl=@(HttpUtility.UrlEncode(Request.Url.ToString()))"><i class="icon-lock"></i> 锁定屏幕</a></li>
 
                             <li><a href="~/User/Logout.html"><i class="icon-key"></i> 退出登录</a></li>
 
@@ -2437,7 +2437,6 @@
     </div>
 
     <!-- END FOOTER -->
-
     <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
     @Html.Partial("~/Views/Sys/IncludeJavaSciptPart.cshtml")
     <script src="@(Config.ResourcePath)js/app.js?Version=@(Config.Version)"></script>

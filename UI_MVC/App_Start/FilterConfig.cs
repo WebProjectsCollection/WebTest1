@@ -8,7 +8,7 @@ namespace UI_MVC
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //filters.Add(new AuthorizationAttribute());
+            filters.Add(new AuthorizationAttribute());
         }
     }
 }

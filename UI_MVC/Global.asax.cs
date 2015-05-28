@@ -35,7 +35,7 @@ namespace UI_MVC
                     if (httpCode == 400 || httpCode == 404)
                     {
                         //Response.StatusCode = 404;//在IIS中配置自定义404页面（不会配呀）
-                        HttpContext.Current.Response.Redirect("~/NotFound.html", true);
+                        HttpContext.Current.Response.Redirect("~/sys/NotFound.html", true);
                         Server.ClearError();
                         return;
                     }
@@ -46,7 +46,7 @@ namespace UI_MVC
                 if (lastError.TargetSite.ReflectedType == typeof(System.IO.Path))
                 {
                     //Response.StatusCode = 404;
-                    HttpContext.Current.Response.Redirect("~/NotFound.html", true);
+                    HttpContext.Current.Response.Redirect("~/Sys/NotFound.html", true);
                     Server.ClearError();
                     return;
                 }
