@@ -1,0 +1,73 @@
+﻿@using UI_MVC.Common;
+
+<!-- 顶部导航栏 -->
+
+<div class="header navbar navbar-inverse navbar-fixed-top">
+
+    <!-- BEGIN TOP NAVIGATION BAR -->
+
+    <div class="navbar-inner">
+
+        <div class="container-fluid">
+
+            <!-- BEGIN LOGO -->
+
+            <a class="brand" href="index.html">
+
+                <img src="@(Config.ResourcePath)image/logo.png?Version=@(Config.Version)" alt="logo" />  <!-- 需替换 -->
+
+            </a>
+
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+
+            <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+
+                <img src="@(Config.ResourcePath)image/menu-toggler.png?Version=@(Config.Version)" alt="" /> <!-- 这个可以保留 -->
+
+            </a>
+
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+
+            <ul class="nav pull-right">
+
+                <!-- BEGIN USER LOGIN DROPDOWN -->
+
+                <li class="dropdown user">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        <img alt="" src="@(Config.ResourcePath)image/avatar1_small.jpg" /> <!-- 头像 -->
+
+                        <span class="username">当前用户当前用户当前用户当前用户</span>
+
+                        <i class="icon-angle-down"></i>
+
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a href="~/User/Profile.html"><i class="icon-user"></i> 用户信息</a></li>
+
+                        <li><a href="~/Extra/Lock.html?backUrl=@(HttpUtility.UrlEncode(Request.Url.ToString()))"><i class="icon-lock"></i> 锁定屏幕</a></li>
+
+                        <li><a href="~/User/Logout.html"><i class="icon-key"></i> 退出登录</a></li>
+
+                    </ul>
+
+                </li>
+
+                <!-- END USER LOGIN DROPDOWN -->
+
+            </ul>
+
+            <!-- END TOP NAVIGATION MENU -->
+
+        </div>
+
+    </div>
+
+    <!-- END TOP NAVIGATION BAR -->
+
+</div>

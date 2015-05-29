@@ -487,7 +487,9 @@
     <Content Include="Resource\js\ui-tree.js" />
     <Content Include="Resource\js\wysihtml5-0.3.0.js" />
     <Content Include="Views\NotFound1.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -539,6 +541,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sys\HeaderPart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sys\SideBarPart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sys\FooterPart.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
