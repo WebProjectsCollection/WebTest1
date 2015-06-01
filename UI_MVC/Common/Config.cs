@@ -74,5 +74,18 @@ namespace UI_MVC.Common
                 return XConfig.GetValue<string>("AuthSaveType");
             }
         }
+
+        /// <summary>
+        /// 数据文件路径
+        /// </summary>
+        public static string DataFilePath
+        {
+            get
+            {
+                {
+                    return XConfig.GetValue<string>("DataFilePath");
+                }
+            }
+        }
     }
 }

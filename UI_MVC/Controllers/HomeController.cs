@@ -15,7 +15,6 @@ namespace UI_MVC.Controllers
         // GET: /Home/
         public ActionResult Page(string username = "yangxun", string pwd = "123")
         {
-            DataSet ds = XXMLHelper.ConvertXMLToDataSet("D:/test.xml");
             return View();
         }
 

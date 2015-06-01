@@ -19,7 +19,7 @@ var Lock = function () {
                     if (res.Message != 'OK') {
                         $('.lab-error').show();
                     } else {
-                        unclock();// 解锁成功
+                        unlock();// 解锁成功
                     }
                 },
                 dataType: 'json',

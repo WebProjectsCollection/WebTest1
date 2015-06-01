@@ -531,6 +531,14 @@
     <Content Include="Views\Home\Page.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bussiness\Bussiness.csproj">
+      <Project>{9df6e829-a375-4777-b9df-5e86f1c6df52}</Project>
+      <Name>Bussiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Identity\Identity.csproj">
+      <Project>{c66559ee-174d-4aa9-ab54-1af247c98906}</Project>
+      <Name>Identity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tools\Tools.csproj">
       <Project>{1485104f-9d8a-4e8a-8d73-f419d1c3f788}</Project>
       <Name>Tools</Name>
