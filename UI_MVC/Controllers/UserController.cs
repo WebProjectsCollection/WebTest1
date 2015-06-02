@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Bussiness;
 using UI_MVC.Common;
 using UI_MVC.Filters;
 
@@ -19,7 +20,7 @@ namespace UI_MVC.Controllers
         public ActionResult Login()
         {
             // 验证Cookies，判断用户是否已经登录
-            if (Request.Cookies[Config.AuthSaveKey] != null)
+            if (Request.Cookies[Config.AuthSaveKey] != null && Identity.UserInfo.LoginedUserInfo != null)
             {
                 // 跳转到首页
                 Response.Redirect("/");
@@ -35,12 +36,12 @@ namespace UI_MVC.Controllers
         [AllowAnonymous]
         public ActionResult Login(string userName, string password)
         {
-            // 登录验证username=yx&password=123
-            if (userName == "yx" && password == "123")
+            // 验证登录信息
+            if (UserInfoBLL.CheckUserInfo(userName, password))
             {
                 // 写Cookies
                 HttpCookie _cookie = new HttpCookie(Config.AuthSaveKey);
-                _cookie.Values.Add("name", "yangxun");
+                _cookie.Values.Add("name", userName);
                 Response.Cookies.Add(_cookie);
                 return Json(new { Message = "OK" });
             }
@@ -60,7 +61,8 @@ namespace UI_MVC.Controllers
                 _cookie.Expires = DateTime.Now.AddHours(-1);
                 Response.Cookies.Add(_cookie);
             }
-            Response.Redirect("/User/Login.html");
+            Identity.UserInfo.LoginedUserInfo = null;
+            Response.Redirect(Config.LoginUrl);
             return null;
         }
 

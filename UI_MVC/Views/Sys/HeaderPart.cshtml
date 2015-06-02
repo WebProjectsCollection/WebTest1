@@ -1,4 +1,5 @@
 ﻿@using UI_MVC.Common;
+@using Identity;
 
 <!-- 顶部导航栏 -->
 
@@ -37,22 +38,43 @@
                 <li class="dropdown user">
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        @{
+                            if (UserInfo.LoginedUserInfo != null)
+                            {
+                                <img alt="" src="@UserInfo.LoginedUserInfo.Avatar" /> <!-- 头像 -->
 
-                        <img alt="" src="@(Config.ResourcePath)image/avatar1_small.jpg" /> <!-- 头像 -->
+                                <span class="username">@UserInfo.LoginedUserInfo.UserName</span>
 
-                        <span class="username">当前用户当前用户当前用户当前用户</span>
+                                <i class="icon-angle-down"></i>
+                            }
+                            else
+                            {
+                                <span class="username">未登录用户</span>
 
-                        <i class="icon-angle-down"></i>
+                                <i class="icon-angle-down"></i>
+                            }
+                        }
+
 
                     </a>
 
                     <ul class="dropdown-menu">
+                        @{
+                            if (UserInfo.LoginedUserInfo != null)
+                            {
+                                <li><a href="~/User/Profile.html"><i class="icon-user"></i> 用户信息</a></li>
 
-                        <li><a href="~/User/Profile.html"><i class="icon-user"></i> 用户信息</a></li>
+                                <li><a href="~/Extra/Lock.html?backUrl=@(HttpUtility.UrlEncode(Request.Url.ToString()))"><i class="icon-lock"></i> 锁定屏幕</a></li>
 
-                        <li><a href="~/Extra/Lock.html?backUrl=@(HttpUtility.UrlEncode(Request.Url.ToString()))"><i class="icon-lock"></i> 锁定屏幕</a></li>
+                                <li><a href="~/User/Logout.html"><i class="icon-key"></i> 退出登录</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="~/User/Logout.html"><i class="icon-key"></i> 登录用户</a></li>
+                            }
+                        }
 
-                        <li><a href="~/User/Logout.html"><i class="icon-key"></i> 退出登录</a></li>
+
 
                     </ul>
 

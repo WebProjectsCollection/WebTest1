@@ -14,26 +14,21 @@ namespace UI_MVC.Controllers
         public ActionResult Lock(string backUrl)
         {
             HttpCookie cookie = Request.Cookies[Config.AuthSaveKey];
-            if (cookie == null)
+            if (cookie == null || Identity.UserInfo.LoginedUserInfo == null)
             {
-                Response.Redirect("/User/Login.html");
-                return null;
-            }
-            if (string.IsNullOrWhiteSpace(backUrl))
-            {
-                Response.Redirect("/");
+                Response.Redirect(Config.LoginUrl);
                 return null;
             }
             // 添加锁定Cookies,把要返回的url也写到cookies里
             if (cookie.Values["islocked"] != "islocked")
             {
                 cookie.Values.Add("islocked", "islocked");
-                cookie.Values.Add("backurl", backUrl);
+                cookie.Values.Add("backurl", backUrl ?? "/");
                 Response.Cookies.Add(cookie);
             }
             ViewBag.BackUrl = cookie.Values["backurl"] == null || cookie.Values["backurl"].ToString().Trim() == "" ? "/" : cookie.Values["backurl"].ToString();
-            ViewBag.UserName = "yangxun";
-            ViewBag.UserEmail = "yangxun@outlook.com";
+            ViewBag.UserName = Identity.UserInfo.LoginedUserInfo.UserName;
+            ViewBag.UserEmail = Identity.UserInfo.LoginedUserInfo.Email;
             return View();
 
         }

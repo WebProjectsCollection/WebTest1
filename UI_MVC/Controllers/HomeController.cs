@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using UI_MVC.Filters;
 using Tools;
 using System.Data;
+using Bussiness;
 
 namespace UI_MVC.Controllers
 {
@@ -13,7 +14,7 @@ namespace UI_MVC.Controllers
     {
         //
         // GET: /Home/
-        public ActionResult Page(string username = "yangxun", string pwd = "123")
+        public ActionResult Page()
         {
             return View();
         }

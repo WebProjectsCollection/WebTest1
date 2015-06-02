@@ -9,18 +9,28 @@ using Tools;
 
 namespace DataAccess
 {
-    public class UserInfoDAL
+    public static class UserInfoDAL
     {
-        //public static UserInfo GetUserInfo(string userName, string password)
-        //{
-        //    string dataPath = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-        //    string xmlData = XFileOperate.ReadFile(dataPath);
-        //    DataSet dataSet = XXMLHelper.ConvertXMLToDataSet(xmlData);
-        //    //dataSet.Tables["UserInfo"].ToList<UserInfo>(null);
-        //}
-        //public static IList<T> ToList<T>(this DataTable table)
-        //{
-        //    //return table.ToList<T>(null);
-        //}
+        public static UserInfo GetUserInfo(string userName, string password)
+        {
+            string dataPath = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+            string xmlData = XFileOperate.ReadFile(dataPath);
+            DataSet dataSet = XXMLHelper.ConvertXMLToDataSet(xmlData);
+            // 查找第一个满足条件的数据
+            DataRow userInfoRow = dataSet.Tables["UserInfo"].AsEnumerable().FirstOrDefault(row => row["userName"].ToString() == userName && row["password"].ToString() == password);
+            if (userInfoRow != null)
+            {
+                return new UserInfo()
+                {
+                    UserName = userInfoRow["userName"].ToString(),
+                    Email = userInfoRow["email"].ToString(),
+                    Phone = userInfoRow["phone"].ToString()
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

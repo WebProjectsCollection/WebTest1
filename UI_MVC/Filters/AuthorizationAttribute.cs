@@ -172,7 +172,7 @@ namespace UI_MVC.Filters
                             && !filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true))
                         {
                             HttpCookie cookie = filterContext.HttpContext.Request.Cookies[AuthSaveKey];
-                            if (cookie == null)
+                            if (cookie == null || Identity.UserInfo.LoginedUserInfo == null)
                             {
                                 filterContext.Result = new RedirectResult(LoginUrl);
                             }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using DataAccess;
+using Identity;
 
 namespace Bussiness
 {
@@ -10,9 +12,17 @@ namespace Bussiness
     {
         public static bool CheckUserInfo(string userName, string password)
         {
-            //string xmldata = XFileOperate.ReadFile(Config.DataFilePath);
-            //DataSet ds = XXMLHelper.ConvertXMLToDataSet(xmldata);
-            return false;
+            UserInfo loginedUser = UserInfoDAL.GetUserInfo(userName, password);
+            if (loginedUser == null)
+            {
+                // 登录失败
+                return false;
+            }
+            else
+            {
+                UserInfo.LoginedUserInfo = loginedUser;
+                return true;
+            }
         }
     }
 }
