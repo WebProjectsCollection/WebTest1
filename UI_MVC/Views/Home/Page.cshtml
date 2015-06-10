@@ -18,6 +18,7 @@
     <link href="@(Config.ResourcePath)css/error.css?Version=@(Config.Version)" rel="stylesheet" type="text/css" />
     <link href="@(Config.ResourcePath)css/chosen.css?Version=@(Config.Version)" rel="stylesheet" type="text/css" />
     <link href="@(Config.ResourcePath)css/profile.css?Version=@(Config.Version)" rel="stylesheet" type="text/css" />
+    <link href="@(Config.ResourcePath)css/DT_bootstrap.css?Version=@(Config.Version)" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL STYLES -->
 </head>
 <body class="page-header-fixed page-sidebar-fixed page-sidebar-closed">
@@ -25,7 +26,6 @@
     <!-- BEGIN HEADER -->
     @Html.Partial("~/Views/Sys/HeaderPart.cshtml")
     <!-- END HEADER -->
-
     <!-- BEGIN CONTAINER -->
 
     <div class="page-container row-fluid">
@@ -33,7 +33,6 @@
         <!-- BEGIN SIDEBAR -->
         @Html.Partial("~/Views/Sys/SideBarPart.cshtml")
         <!-- END SIDEBAR -->
-
         <!-- BEGIN PAGE -->
         <div class="page-content">
 
@@ -90,14 +89,15 @@
                         <!--BEGIN TABS-->
                         <div class="tabbable tabbable-custom tabbable-full-width">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab_1_1" data-toggle="tab">Overview</a></li>
+                                <li><a href="#tab_1_1" data-toggle="tab">Overview</a></li>
                                 <li><a href="#tab_1_2" data-toggle="tab">Profile Info</a></li>
                                 <li><a href="#tab_1_3" data-toggle="tab">Account</a></li>
                                 <li><a href="#tab_1_4" data-toggle="tab">Projects</a></li>
                                 <li><a href="#tab_1_6" data-toggle="tab">Help</a></li>
+                                <li class="active"><a href="#tab_1_7" data-toggle="tab">Table Test</a></li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane row-fluid active" id="tab_1_1">
+                                <div class="tab-pane row-fluid" id="tab_1_1">
                                     <ul class="unstyled profile-nav span3">
                                         <li><img src="@(Config.ResourcePath)image/profile-img.png" alt="" /> <a href="#" class="profile-edit">edit</a></li>
                                         <li><a href="#">Projects</a></li>
@@ -1363,6 +1363,127 @@
                                     </div>
                                 </div>
                                 <!--end tab-pane-->
+                                <div class="tab-pane row-fluid active" id="tab_1_7">
+                                    <div class="portlet box red span6">
+
+                                        <div class="portlet-title">
+
+                                            <div class="caption"><i class="icon-cogs"></i>Simple Table</div>
+
+                                            <div class="tools">
+
+                                                <a href="javascript:;" class="collapse"></a>
+
+                                                <a href="#portlet-config" data-toggle="modal" class="config"></a>
+
+                                                <a href="javascript:;" class="reload"></a>
+
+                                                <a href="javascript:;" class="remove"></a>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="portlet-body"><!-- 点击表格的配置按钮弹出的配置框 -->
+
+                                            <table class="table table-hover">
+
+                                                <thead>
+
+                                                    <tr>
+
+                                                        <th></th>
+
+                                                        <th>First Name</th>
+
+                                                        <th>Last Name</th>
+
+                                                        <th class="hidden-480">Username</th>
+
+                                                        <th>Status</th>
+                                                        <th>Operate</th>
+                                                    </tr>
+
+                                                </thead>
+
+                                                <tbody>
+
+                                                    <tr>
+
+                                                        <td>1</td>
+
+                                                        <td>Mark</td>
+
+                                                        <td>Otto</td>
+
+                                                        <td class="hidden-480">makr124</td>
+
+                                                        <td><span class="label label-success">Approved</span></td>
+                                                        <td><button class="btn mini blue"><i class="icon-trash"></i> Delete</button></td>
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td>2</td>
+
+                                                        <td>Jacob</td>
+
+                                                        <td>Nilson</td>
+
+                                                        <td class="hidden-480">jac123</td>
+
+                                                        <td><span class="label label-info">Pending</span></td>
+                                                        <td><button class="btn mini red"><i class="icon-remove"></i> Remove</button></td>
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td>3</td>
+
+                                                        <td>Larry</td>
+
+                                                        <td>Cooper</td>
+
+                                                        <td class="hidden-480">lar</td>
+
+                                                        <td><span class="label label-warning">Suspended</span></td>
+                                                        <td><button class="btn mini blue"><i class="icon-edit"></i> Edit</button></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Sandy</td>
+                                                        <td>Lim</td>
+                                                        <td class="hidden-480">sanlim</td>
+                                                        <td><span class="label label-danger">Blocked</span></td>
+                                                        <td><button class="btn mini blue"><i class="icon-share"></i> Share</button></td>
+                                                    </tr>
+
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="portlet-config" class="modal hide">
+
+                                <div class="modal-header">
+
+                                    <button data-dismiss="modal" class="close" type="button"></button>
+
+                                    <h3>portlet Settings</h3>
+
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <p>Here will be a configuration form</p>
+
+                                </div>
+
                             </div>
                         </div>
                         <!--END TABS-->
@@ -1374,15 +1495,13 @@
 
         </div>
         <!-- END PAGE -->
-        
+
     </div>
 
     <!-- END CONTAINER -->
-
     <!-- BEGIN FOOTER -->
     @Html.Partial("~/Views/Sys/FooterPart.cshtml")
     <!-- END FOOTER -->
-
     <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
     @Html.Partial("~/Views/Sys/IncludeJavaSciptPart.cshtml")
     <script src="@(Config.ResourcePath)js/app.js?Version=@(Config.Version)"></script>

@@ -785,7 +785,7 @@ var App = function () {
         blockUI: function (el, centerY) {
             var el = jQuery(el); 
             el.block({
-                    message: '<img src="./assets/img/ajax-loading.gif" align="">',
+                message: '<img src="/Resource/image/loading.gif" align="">',
                     centerY: centerY != undefined ? centerY : true,
                     css: {
                         top: '10%',
